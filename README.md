@@ -9,8 +9,8 @@
 **Navigate to project in terminal and run:** .\mvnw spring-boot:run
 
 **Host servers links**
-*Basic access to server:* localhost:8080
-*Access specific endpoint:* localhost:8080/{endpoint tag}
-*Swagger UI:* localhost:8080/swagger-ui.html
+*Basic access to server: localhost:8080*
+*Access specific endpoint: localhost:8080/{endpoint tag}*
+*Swagger UI: localhost:8080/swagger-ui.html*
 
 
