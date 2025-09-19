@@ -11,19 +11,19 @@ public class User {
 
     private String name;
     private String password;
-    private Boolean isAdmin;
+    private String role;
 
 
     // Getters
     public Long getId() { return id; }
     public String getName() { return name; }
     public String getPassword() { return password; }
-    public Boolean getIsAdmin() { return isAdmin; }
+    public String getRole() { return role; }
 
     // Setters
     public void setId(Long id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setPassword(String password) { this.password = password; }
-    public void setIsAdmin(Boolean isAdmin) { this.isAdmin = isAdmin; }
+    public void setRole(String role) { this.role = role; }
 }
 
