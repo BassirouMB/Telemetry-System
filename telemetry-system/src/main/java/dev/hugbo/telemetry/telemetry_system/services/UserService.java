@@ -44,8 +44,12 @@ public class UserService {
         User user = userRepository.findByName(name);
         if (user != null) {
             if (encoder.matches(password, user.getPassword())) {
-                user.setPassword(encoder.encode(newPassword));
-                return userRepository.save(user);
+                if (encoder.matches(newPassword, user.getPassword())){
+                    throw new IllegalArgumentException("New password cannot be the same as old password");
+                } else {
+                    user.setPassword(encoder.encode(newPassword));
+                    return userRepository.save(user);
+                }
             } else {
                 throw new IllegalArgumentException("Current password is incorrect");
             }
