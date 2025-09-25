@@ -1,0 +1,6 @@
+dev/hugbo/telemetry/telemetry_system/configs/SecurityConfig.class
+dev/hugbo/telemetry/telemetry_system/controllers/AuthController.class
+dev/hugbo/telemetry/telemetry_system/entities/User.class
+dev/hugbo/telemetry/telemetry_system/TelemetrySystemApplication.class
+dev/hugbo/telemetry/telemetry_system/controllers/UserController.class
+dev/hugbo/telemetry/telemetry_system/repositories/UserRepository.class
