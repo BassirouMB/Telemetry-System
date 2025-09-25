@@ -15,13 +15,11 @@ public class User {
 
 
     // Getters
-    public Long getId() { return id; }
     public String getName() { return name; }
     public String getPassword() { return password; }
     public Boolean getIsAdmin() { return isAdmin; }
 
     // Setters
-    public void setId(Long id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setPassword(String password) { this.password = password; }
     public void setIsAdmin(Boolean isAdmin) { this.isAdmin = isAdmin; }

@@ -39,4 +39,9 @@ public class UserController {
     public User deleteUser(@RequestParam String name) {
         return userService.deleteUser(name);
     }
+
+    @PostMapping("/changePassword")
+    public User changePassword(@RequestParam String name, @RequestParam String password, @RequestParam String newPassword) {
+        return userService.changePassword(name, password, newPassword);
+    }
 }

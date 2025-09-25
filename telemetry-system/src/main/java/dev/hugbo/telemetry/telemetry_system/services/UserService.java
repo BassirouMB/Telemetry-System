@@ -39,4 +39,18 @@ public class UserService {
             throw new IllegalArgumentException("User with name " + name + " does not exist");
         }
     }
+
+    public User changePassword(String name, String password, String newPassword) {
+        User user = userRepository.findByName(name);
+        if (user != null) {
+            if (encoder.matches(password, user.getPassword())) {
+                user.setPassword(encoder.encode(newPassword));
+                return userRepository.save(user);
+            } else {
+                throw new IllegalArgumentException("Current password is incorrect");
+            }
+        } else {
+            throw new IllegalArgumentException("User with name " + name + " does not exist");
+        }
+    }
 }
