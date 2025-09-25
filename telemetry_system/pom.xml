@@ -29,6 +29,12 @@
 	<properties>
 		<java.version>24</java.version>
 	</properties>
+	<repositories>
+    	<repository>
+        	<id>Eclipse Paho Repo</id>
+        	<url>https://repo.eclipse.org/content/repositories/paho-releases/</url>
+    	</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -73,13 +79,58 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.paho</groupId>
+			<artifactId>org.eclipse.paho.mqttv5.client</artifactId>
+			<version>1.2.5</version>
+    	</dependency>
+
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>4.32.1</version>
+		</dependency>
+
 	</dependencies>
+
 
 	<build>
 		<plugins>
 			<plugin>
     			<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>kr.motd.maven</groupId>
+				<artifactId>os-maven-plugin</artifactId>
+				<version>1.7.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>detect</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.xolstice.maven.plugins</groupId>
+				<artifactId>protobuf-maven-plugin</artifactId>
+				<version>0.6.1</version>
+				<configuration>
+					<protocArtifact>com.google.protobuf:protoc:3.23.4:exe:${os.detected.classifier}</protocArtifact>
+					<protoSourceRoot>${project.basedir}/src/main/proto</protoSourceRoot>
+                	<outputDirectory>${project.build.directory}/generated-sources/protobuf/java</outputDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
