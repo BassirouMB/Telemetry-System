@@ -19,6 +19,10 @@ public class UserService {
 
     public User createUser(String name, String password, Boolean isAdmin) {
         
+        if (userRepository.findByName(name) != null) {
+            throw new IllegalArgumentException("User with name " + name + " already exists.");
+        }
+
         User user = new User();
         user.setName(name);
         user.setPassword(encoder.encode(password));
