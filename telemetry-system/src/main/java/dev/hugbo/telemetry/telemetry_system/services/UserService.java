@@ -29,4 +29,14 @@ public class UserService {
             return userRepository.save(user);
         }
     }
+
+    public User deleteUser(String name) {
+        User user = userRepository.findByName(name);
+        if (user != null) {
+            userRepository.delete(user);
+            return user;
+        } else {
+            throw new IllegalArgumentException("User with name " + name + " does not exist");
+        }
+    }
 }
