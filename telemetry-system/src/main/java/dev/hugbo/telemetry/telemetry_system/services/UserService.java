@@ -21,12 +21,12 @@ public class UserService {
         
         if (userRepository.findByName(name) != null) {
             throw new IllegalArgumentException("User with name " + name + " already exists.");
+        } else {        
+            User user = new User();
+            user.setName(name);
+            user.setPassword(encoder.encode(password));
+            user.setIsAdmin(isAdmin);
+            return userRepository.save(user);
         }
-
-        User user = new User();
-        user.setName(name);
-        user.setPassword(encoder.encode(password));
-        user.setIsAdmin(isAdmin);
-        return userRepository.save(user);
     }
 }
