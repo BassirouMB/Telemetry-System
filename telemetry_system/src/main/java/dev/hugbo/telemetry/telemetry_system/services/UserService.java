@@ -1,0 +1,60 @@
+package dev.hugbo.telemetry.telemetry_system.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import dev.hugbo.telemetry.telemetry_system.entities.User;
+import dev.hugbo.telemetry.telemetry_system.repositories.UserRepository;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
+
+    public User createUser(String name, String password, Boolean isAdmin) {
+        
+        if (userRepository.findByName(name) != null) {
+            throw new IllegalArgumentException("User with name " + name + " already exists.");
+        } else {        
+            User user = new User();
+            user.setName(name);
+            user.setPassword(encoder.encode(password));
+            user.setIsAdmin(isAdmin);
+            return userRepository.save(user);
+        }
+    }
+
+    public User deleteUser(String name) {
+        User user = userRepository.findByName(name);
+        if (user != null) {
+            userRepository.delete(user);
+            return user;
+        } else {
+            throw new IllegalArgumentException("User with name " + name + " does not exist");
+        }
+    }
+
+    public User changePassword(String name, String password, String newPassword) {
+        User user = userRepository.findByName(name);
+        if (user != null) {
+            if (encoder.matches(password, user.getPassword())) {
+                if (encoder.matches(newPassword, user.getPassword())){
+                    throw new IllegalArgumentException("New password cannot be the same as old password");
+                } else {
+                    user.setPassword(encoder.encode(newPassword));
+                    return userRepository.save(user);
+                }
+            } else {
+                throw new IllegalArgumentException("Current password is incorrect");
+            }
+        } else {
+            throw new IllegalArgumentException("User with name " + name + " does not exist");
+        }
+    }
+}
