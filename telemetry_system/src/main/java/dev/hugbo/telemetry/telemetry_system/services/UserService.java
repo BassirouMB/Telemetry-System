@@ -54,7 +54,7 @@ public class UserService {
                 throw new IllegalArgumentException("Current password is incorrect");
             }
         } else {
-            throw new IllegalArgumentException("User with name " + name + " does not exist");
+            throw new IllegalArgumentException("User with name " + name + " does not exist.");
         }
     }
 }
